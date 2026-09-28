@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Todo User",
+  "description": "A user document stored in the Firestore users collection.",
+  "type": "object",
+  "properties": {
+    "uid": {
+      "type": "string",
+      "description": "The Firebase Authentication user ID."
+    },
+    "display_name": {
+      "type": "string",
+      "description": "The user's display name."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "The user's email address."
+    },
+    "phone_number": {
+      "type": "string",
+      "description": "The user's phone number."
+    },
+    "birthday": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The user's date of birth, represented as an RFC 3339 date-time."
+    },
+    "hometown": {
+      "type": "string",
+      "description": "The user's hometown."
+    },
+    "photo_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the user's profile photo."
+    },
+    "created_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp indicating when the user document was created."
+    }
+  },
+  "required": [
+    "uid",
+    "display_name",
+    "email",
+    "created_time"
+  ]
+}
