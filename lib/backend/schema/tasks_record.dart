@@ -77,8 +77,7 @@ class TasksRecord extends FirestoreRecord {
 
   @override
   bool operator ==(other) =>
-      other is TasksRecord &&
-      reference.path.hashCode == other.reference.path.hashCode;
+      other is TasksRecord && reference.path == other.reference.path;
 }
 
 Map<String, dynamic> createTasksRecordData({

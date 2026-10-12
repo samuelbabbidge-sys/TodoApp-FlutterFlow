@@ -92,12 +92,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => LoginWidget(),
         ),
         FFRoute(
-          name: TasksWidget.routeName,
-          path: TasksWidget.routePath,
-          builder: (context, params) =>
-              params.isEmpty ? NavBarPage(initialPage: 'tasks') : TasksWidget(),
-        ),
-        FFRoute(
           name: OnboardingWidget.routeName,
           path: OnboardingWidget.routePath,
           builder: (context, params) => OnboardingWidget(),
@@ -121,6 +115,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'completed')
               : CompletedWidget(),
+        ),
+        FFRoute(
+          name: TasksWidget.routeName,
+          path: TasksWidget.routePath,
+          builder: (context, params) =>
+              params.isEmpty ? NavBarPage(initialPage: 'tasks') : TasksWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -332,6 +332,10 @@ class FFRoute {
                     duration: transitionInfo.duration,
                     reverseDuration: transitionInfo.duration,
                     alignment: transitionInfo.alignment,
+                    curve: transitionInfo.transitionType ==
+                            PageTransitionType.scale
+                        ? const Interval(0.0, 0.5)
+                        : Curves.linear,
                     child: child,
                   ).buildTransitions(
                     context,
